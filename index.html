@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Wishlist</title>
+  <link rel="stylesheet" href="./booklibrary.css">
+</head>
+<body style="background-image: url(./imagebook/book1.jpg);">
+  <!-- <div class="background"> -->
+  <div class="container">
+    <h1>Book Wishlist</h1>
+    <div class="input-group">
+      <input type="text" id="bookTitle" placeholder="Enter book title">
+      <button onclick="addBook()">Add Book</button>
+    </div>
+    <ul id="bookList"></ul>
+  </div>
+  <script>function addBook() {
+    const bookTitle = document.getElementById('bookTitle').value.trim();
+    if (bookTitle === '') {
+      alert('Please enter a book title');
+      return;
+    }
+  
+    const bookList = document.getElementById('bookList');
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${bookTitle}</span>
+      <div>
+        <button onclick="markAsRead(this)">Mark as Read</button>
+        <button onclick="removeBook(this)">Remove</button>
+      </div>
+    `;
+    bookList.appendChild(li);
+    document.getElementById('bookTitle').value = '';
+  }
+  
+  function markAsRead(button) {
+    const li = button.closest('li');
+    const statusSpan = li.querySelector('.status');
+    if (statusSpan) {
+      statusSpan.textContent = 'Read';
+    } else {
+      const span = document.createElement('span');
+      span.classList.add('status');
+      span.textContent = 'Read';
+      li.insertBefore(span, li.childNodes[0]);
+    }
+  }
+  
+  function removeBook(button) {
+    const li = button.closest('li');
+    li.parentNode.removeChild(li);
+  }
+  </script>
+  <!-- </div> -->
+</body>
+</html>
+
+<!-- footer -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Wishlist</title>
+  <style>
+    /* Your existing CSS styles here */
+
+    /* Footer styles */
+  
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Your existing HTML code here -->
+
+  <footer>
+    <p>&copy; 2024 Book Wishlist. All rights reserved.</p>
+  </footer>
+
+  <!-- Your existing JavaScript code here -->
+</body>
+</html>
+
